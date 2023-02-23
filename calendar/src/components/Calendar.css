@@ -4,6 +4,13 @@
   margin: 50px auto;
 }
 
+.calendar-topic {
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+  margin-bottom: 20px;
+}
+
 .calendar-header {
   display: flex;
   justify-content: space-between;
@@ -45,4 +52,5 @@
   border-radius: 10px;
   width: 50px;
   height: 35px;
+  font-size: medium;
 }

@@ -45,6 +45,7 @@ function Calendar() {
 
   return (
     <div className="calendar">
+      <div className="calendar-topic"><b>Calendar in United States </b></div>
       <div className="calendar-header">
         <button className="btn" onClick={prevMonth}><b>{`<`}</b></button>
         <div><b>{months[date.getMonth()]} {date.getFullYear()}</b></div>
