@@ -58,10 +58,7 @@ function Calendar() {
           <div
             key={index}
             className={day ? 'calendar-day' : 'calendar-day calendar-empty'}
-            onClick={() =>
-              day &&
-              console.log(new Date(date.getFullYear(), date.getMonth(), day))
-            }
+            onClick={() => console.log(new Date(date.getFullYear(), date.getMonth(), day))}
           >
             {day}
           </div>
