@@ -1,4 +1,4 @@
-import RewardsProgram from './components/RewardsProgram';
+import RewardsProgram from "./components/RewardsProgram";
 
 function App() {
   return (

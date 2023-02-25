@@ -1,24 +1,40 @@
-.rewards-program {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
-  
-  th {
-    background-color: #333;
-    color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+h1 {
+  font-size: 30px;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  width: max-content;
+}
+
+th,
+td {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tbody tr:hover {
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.loading {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 50px;
+}

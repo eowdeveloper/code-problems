@@ -1,21 +1,3 @@
-# Rewards Program
-
-## Description
-
-This is a rewards program that calculates reward points for customer transactions during a three-month period. The program fetches transaction data from a mock API and displays the total reward points earned by each customer per month.
-
-## Installation
-
-1. Clone the repository to your local machine.
-2. Install dependencies by running `npm install` in the project directory.
-
-## Usage
-1. Start the development server by running `npm start`.
-2. Open `http://localhost:3000` to view the application in your browser.
-3. The app has one endpoints:
-    `GET /transactions` returns a list of all transactions during the 3 month period.
-
-```
 {
   "transactions": [
     {
@@ -26,7 +8,7 @@ This is a rewards program that calculates reward points for customer transaction
     {
       "customer": "Nathan Neil",
       "date": "2022-01-10",
-      "amount": 50
+      "amount": 60
     },
     {
       "customer": "Elaina Jillian",
@@ -36,7 +18,7 @@ This is a rewards program that calculates reward points for customer transaction
     {
       "customer": "Nathan Neil",
       "date": "2022-01-13",
-      "amount": 50
+      "amount": 200
     },
     {
       "customer": "Elaina Jillian",
@@ -44,8 +26,13 @@ This is a rewards program that calculates reward points for customer transaction
       "amount": 80
     },
     {
-      "customer": "Nathan Neil",
+      "customer": "Elaina Jillian",
       "date": "2022-02-01",
+      "amount": 110
+    },
+    {
+      "customer": "Nathan Neil",
+      "date": "2022-02-03",
       "amount": 150
     },
     {
@@ -95,4 +82,3 @@ This is a rewards program that calculates reward points for customer transaction
     }
   ]
 }
-```

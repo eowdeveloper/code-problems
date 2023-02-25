@@ -1,44 +1,50 @@
-import { useState, useEffect } from 'react';
-import { fetchTransactions } from '../api/customerApis';
-import './RewardsProgram.css';
+import { useState, useEffect } from "react";
+import { fetchTransactions } from "../api/customerApis";
+import "./RewardsProgram.css";
 
 function RewardsProgram() {
   const [transactions, setTransactions] = useState([]);
-  const [groups, setGroups] = useState({});
+  const [rewards, setRewards] = useState([]);
 
   useEffect(() => {
-    fetchTransactions().then(data => {
+    fetchTransactions().then((data) => {
       setTransactions(data);
+    }).catch((error) => {
+      console.error("Error fetching transactions:", error);
+      setTransactions([]);
     });
   }, []);
 
   useEffect(() => {
-    const groupTransactions = () => {
-      const groups = {};
+    const calculateRewards = (transactions) => {
+      const rewards = [];
 
-      for (const transaction of transactions) {
+      transactions.forEach((transaction) => {
         const { customer, date, amount } = transaction;
         const month = date.slice(0, 7);
-
-        if (!groups[customer]) {
-          groups[customer] = {};
-        }
-
-        if (!groups[customer][month]) {
-          groups[customer][month] = 0;
-        }
+        let rewardPoints = 0;
 
         if (amount > 100) {
-          groups[customer][month] += (amount - 100) * 2 + 100;
+          rewardPoints += (amount - 100) * 2 + 100;
         } else if (amount > 50) {
-          groups[customer][month] += amount - 50;
+          rewardPoints += amount - 50;
         }
-      }
 
-      setGroups(groups);
+        const existingReward = rewards.find(
+          (reward) => reward.customer === customer && reward.month === month
+        );
+
+        if (existingReward) {
+          existingReward.points += rewardPoints;
+        } else {
+          rewards.push({ customer, month, points: rewardPoints });
+        }
+      });
+
+      setRewards(rewards);
     };
 
-    groupTransactions();
+    calculateRewards(transactions);
   }, [transactions]);
 
   const renderResults = () => {
@@ -52,16 +58,14 @@ function RewardsProgram() {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(groups).map(customer => {
-            return Object.keys(groups[customer]).map(month => {
-              return (
-                <tr key={`${customer}-${month}`}>
-                  <td>{customer}</td>
-                  <td>{month}</td>
-                  <td>{groups[customer][month]}</td>
-                </tr>
-              );
-            });
+          {rewards.map((reward, index) => {
+            return (
+              <tr key={index}>
+                <td>{reward.customer}</td>
+                <td>{reward.month}</td>
+                <td>{reward.points}</td>
+              </tr>
+            );
           })}
         </tbody>
       </table>
@@ -69,10 +73,10 @@ function RewardsProgram() {
   };
 
   return (
-    <div className="rewards-program">
+    <div>
       <h1>Reward Points Calculator</h1>
       {transactions.length === 0 ? (
-        <p>Loading...</p>
+        <p className="loading">Loading...</p>
       ) : (
         renderResults()
       )}
