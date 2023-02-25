@@ -26,7 +26,7 @@ This is a rewards program that calculates reward points for customer transaction
     {
       "customer": "Nathan Neil",
       "date": "2022-01-10",
-      "amount": 50
+      "amount": 60
     },
     {
       "customer": "Elaina Jillian",
@@ -36,7 +36,7 @@ This is a rewards program that calculates reward points for customer transaction
     {
       "customer": "Nathan Neil",
       "date": "2022-01-13",
-      "amount": 50
+      "amount": 200
     },
     {
       "customer": "Elaina Jillian",
@@ -44,8 +44,13 @@ This is a rewards program that calculates reward points for customer transaction
       "amount": 80
     },
     {
-      "customer": "Nathan Neil",
+      "customer": "Elaina Jillian",
       "date": "2022-02-01",
+      "amount": 110
+    },
+    {
+      "customer": "Nathan Neil",
+      "date": "2022-02-03",
       "amount": 150
     },
     {
