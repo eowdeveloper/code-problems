@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import { jest } from '@jest/globals';
+import { jest, test} from '@jest/globals';
 import RewardsProgram from "./RewardsProgram";
 import * as api from '../api/customerApis';
 
@@ -13,13 +13,13 @@ describe("RewardsProgram", () => {
     ]);
   });
 
-  it("renders loading message while transactions are being fetched", async () => {
+  test("renders loading message while transactions are being fetched", async () => {
     render(<RewardsProgram />);
     expect(screen.getByText("Loading...")).toBeInTheDocument();
     await screen.findByText("Reward Points");
   });
 
-  it("renders table with reward points after transactions are fetched", async () => {
+  test("renders table with reward points after transactions are fetched", async () => {
     const transactions = [
       {
         customer: "Nathan Neil",
@@ -41,11 +41,14 @@ describe("RewardsProgram", () => {
     const table = screen.getByRole("table");
     const rows = within(table).queryAllByRole("row");
   
-    expect(rows[1]).toHaveTextContent(/Nathan Neil/i);
-    expect(rows[1]).toHaveTextContent(/2022-01/i);
-    expect(rows[1]).toHaveTextContent(/90/i);
-    expect(rows[2]).toHaveTextContent(/Elaina Jillian/i);
-    expect(rows[2]).toHaveTextContent(/2022-01/i);
-    expect(rows[2]).toHaveTextContent(/130/i);
+    expect(rows[0]).toHaveTextContent("Customer");
+    expect(rows[0]).toHaveTextContent("Month");
+    expect(rows[0]).toHaveTextContent("Reward Points");
+    expect(rows[1]).toHaveTextContent("Nathan Neil");
+    expect(rows[1]).toHaveTextContent("2022-01");
+    expect(rows[1]).toHaveTextContent("90");
+    expect(rows[2]).toHaveTextContent("Elaina Jillian");
+    expect(rows[2]).toHaveTextContent("2022-01");
+    expect(rows[2]).toHaveTextContent("130");
   });
 });
