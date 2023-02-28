@@ -15,7 +15,7 @@ export default function RewardsProgram() {
         console.error("Error fetching transactions:", error);
         setTransactions([]);
       });
-  }, ); 
+  }, []); // run on the first render
 
   useEffect(() => {
     const calculateRewards = (transactions) => {
@@ -76,7 +76,7 @@ export default function RewardsProgram() {
 
   return (
     <div>
-      <h1>Reward Points Calculator</h1>
+      <h1>Reward Points</h1>
       {transactions.length === 0 ? (
         <p className="loading">Loading...</p>
       ) : (

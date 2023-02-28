@@ -16,7 +16,7 @@ describe("RewardsProgram", () => {
   it("renders loading message while transactions are being fetched", async () => {
     render(<RewardsProgram />);
     expect(screen.getByText("Loading...")).toBeInTheDocument();
-    await screen.findByText("Reward Points Calculator");
+    await screen.findByText("Reward Points");
   });
 
   it("renders table with reward points after transactions are fetched", async () => {
@@ -36,7 +36,7 @@ describe("RewardsProgram", () => {
     jest.spyOn(api, "fetchTransactions").mockResolvedValue(transactions);
   
     render(<RewardsProgram />);
-    await screen.findByText("Reward Points Calculator");
+    await screen.findByText("Reward Points");
   
     const table = screen.getByRole("table");
     const rows = within(table).queryAllByRole("row");
