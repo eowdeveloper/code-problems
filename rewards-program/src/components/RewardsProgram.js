@@ -3,7 +3,9 @@ import { fetchTransactions } from "../api/customerApis";
 import "./RewardsProgram.css";
 
 export default function RewardsProgram() {
+  //customer's transaction information
   const [transactions, setTransactions] = useState([]);
+  //customer's rewards information
   const [rewards, setRewards] = useState([]);
 
   useEffect(() => {
@@ -23,7 +25,7 @@ export default function RewardsProgram() {
 
       transactions.forEach((transaction) => {
         const { customer, date, amount } = transaction;
-        const month = date.slice(0, 7);
+        const month = date.slice(0, 7); // YYYY-MM
         let rewardPoints = 0;
 
         if (amount > 100) {
