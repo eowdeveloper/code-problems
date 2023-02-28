@@ -2,18 +2,20 @@ import { useState, useEffect } from "react";
 import { fetchTransactions } from "../api/customerApis";
 import "./RewardsProgram.css";
 
-function RewardsProgram() {
+export default function RewardsProgram() {
   const [transactions, setTransactions] = useState([]);
   const [rewards, setRewards] = useState([]);
 
   useEffect(() => {
-    fetchTransactions().then((data) => {
-      setTransactions(data);
-    }).catch((error) => {
-      console.error("Error fetching transactions:", error);
-      setTransactions([]);
-    });
-  }, []);
+    fetchTransactions()
+      .then((data) => {
+        setTransactions(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching transactions:", error);
+        setTransactions([]);
+      });
+  }, ); 
 
   useEffect(() => {
     const calculateRewards = (transactions) => {
@@ -25,7 +27,7 @@ function RewardsProgram() {
         let rewardPoints = 0;
 
         if (amount > 100) {
-          rewardPoints += (amount - 100) * 2 + 100;
+          rewardPoints += (amount - 100) * 2 + 50;
         } else if (amount > 50) {
           rewardPoints += amount - 50;
         }
@@ -49,21 +51,21 @@ function RewardsProgram() {
 
   const renderResults = () => {
     return (
-      <table>
+      <table role="table">
         <thead>
-          <tr>
-            <th>Customer</th>
-            <th>Month</th>
-            <th>Reward Points</th>
+          <tr role="row">
+            <th role="columnheader" scope="col">Customer</th>
+            <th role="columnheader" scope="col">Month</th>
+            <th role="columnheader" scope="col">Reward Points</th>
           </tr>
         </thead>
         <tbody>
           {rewards.map((reward, index) => {
             return (
-              <tr key={index}>
-                <td>{reward.customer}</td>
-                <td>{reward.month}</td>
-                <td>{reward.points}</td>
+              <tr key={index} role="row">
+                <td role="cell">{reward.customer}</td>
+                <td role="cell">{reward.month}</td>
+                <td role="cell">{reward.points}</td>
               </tr>
             );
           })}
@@ -83,5 +85,3 @@ function RewardsProgram() {
     </div>
   );
 }
-
-export default RewardsProgram;
