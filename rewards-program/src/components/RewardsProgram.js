@@ -2,12 +2,42 @@ import { useState, useEffect } from "react";
 import { fetchTransactions } from "../api/customerApis";
 import "./RewardsProgram.css";
 
-export default function RewardsProgram() {
-  //customer's transaction information
-  const [transactions, setTransactions] = useState([]);
-  //customer's rewards information
-  const [rewards, setRewards] = useState([]);
+// pure function for customer's rewards information
+const calculateRewards = (transactions) => {
+  const rewards = [];
 
+  transactions.forEach((transaction) => {
+    const { name, amount, date } = transaction;
+    let month = new Date(date).toLocaleString("en", {month: "long"});
+    let rewardPoints = 0;
+
+    // calculate the reward points for EACH transaction
+    if (amount > 100) {
+      rewardPoints += (amount - 100) * 2 + 50;
+    } else if (amount > 50 && amount <= 100) {
+      rewardPoints += amount - 50;
+    }
+
+    // if the customer exist in the system
+    const existingCustomer = name in rewards;
+
+    if (existingCustomer) {
+      // add rewards the existing month or create a new month to add rewards
+      rewards[name].months[month] = (rewards[name].months[month] || 0) + rewardPoints;
+      rewards[name].totalRewards += rewardPoints;
+    } else {
+      rewards[name] = {months:{[month]: rewardPoints}, totalRewards: rewardPoints };
+    }
+  });
+  return rewards;
+};
+
+export default function RewardsProgram() {
+  const [transactions, setTransactions] = useState([]);
+  const [rewards, setRewards] = useState([]);
+  const [monthsArr, setMonthsArr] = useState([]);
+
+  // run on the first render, setting data
   useEffect(() => {
     fetchTransactions()
       .then((data) => {
@@ -17,64 +47,53 @@ export default function RewardsProgram() {
         console.error("Error fetching transactions:", error);
         setTransactions([]);
       });
-  }, []); // run on the first render
+  }, []); 
 
+  // setting the three-month period in an Array called MonthsArr 
+  // setting EACH customer and their rewards points in an object form in an Array called rewards
   useEffect(() => {
-    const calculateRewards = (transactions) => {
-      const rewards = [];
+    const objMonth = {};
+    transactions.forEach((transaction) => {
+      const epoch = new Date(transaction.date).getTime();
+      const month = new Date(transaction.date).toLocaleString("en", {month: "long"});
 
-      transactions.forEach((transaction) => {
-        const { customer, date, amount } = transaction;
-        const month = date.slice(0, 7); // YYYY-MM
-        let rewardPoints = 0;
+      if (!(month in objMonth)) {
+        objMonth[month] = epoch;
+      }
+    });
+    
+    const sortedObjMonth = Object.entries(objMonth)
+      .sort((a, b) => a[1] - b[1])
+      .map((item) => item[0]);
 
-        if (amount > 100) {
-          rewardPoints += (amount - 100) * 2 + 50;
-        } else if (amount > 50) {
-          rewardPoints += amount - 50;
-        }
-
-        const existingReward = rewards.find(
-          (reward) => reward.customer === customer && reward.month === month
-        );
-
-        if (existingReward) {
-          existingReward.points += rewardPoints;
-        } else {
-          rewards.push({ customer, month, points: rewardPoints });
-        }
-      });
-
-      setRewards(rewards);
-    };
-
-    calculateRewards(transactions);
+    setMonthsArr(sortedObjMonth);
+    setRewards(calculateRewards(transactions));
   }, [transactions]);
 
   const renderResults = () => {
     return (
-      <table role="table">
+      <table>
         <thead>
-          <tr role="row">
-            <th role="columnheader" scope="col">Customer</th>
-            <th role="columnheader" scope="col">Month</th>
-            <th role="columnheader" scope="col">Reward Points</th>
+          <tr>
+            <th>Name</th>
+            {monthsArr.map((month, id) => <th key={id}>{month}</th>)}
+            <th>Total Points</th>
           </tr>
         </thead>
         <tbody>
-          {rewards.map((reward, index) => {
-            return (
-              <tr key={index} role="row">
-                <td role="cell">{reward.customer}</td>
-                <td role="cell">{reward.month}</td>
-                <td role="cell">{reward.points}</td>
-              </tr>
-            );
-          })}
+          {Object.entries(rewards).map(([customerName, { months, totalRewards }], id) => (
+            <tr key={id}>
+              <td>{customerName}</td>
+              {monthsArr.map((month, id) => (
+                <td key={id}>{months[month] ? months[month] : 0}</td>
+              ))}
+              <td>{totalRewards}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     );
-  };
+  };  
 
   return (
     <div>
