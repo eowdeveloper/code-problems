@@ -13,7 +13,7 @@ This is a rewards program that calculates reward points for customer transaction
 1. Start the development server by running `npm start`.
 2. Open `http://localhost:3000` to view the application in your browser.
 3. The app has one endpoints:
-    `GET /transactions` returns a list of all transactions during the 3 month period.
+    `GET /transactions` returns a list of all transactions during the three-month period.
 
 ```
 {
