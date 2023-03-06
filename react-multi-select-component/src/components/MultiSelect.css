@@ -118,3 +118,7 @@ input[type="text"]::placeholder {
     overflow: scroll;
     max-height: 200px;
 }
+
+.no-options {
+    color: #ccc;
+}

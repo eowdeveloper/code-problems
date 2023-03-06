@@ -16,6 +16,7 @@ export const useMultiSelect = (options) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setFilteredOptions(options);
         setShowOptions(false);
       }
     };
@@ -26,7 +27,7 @@ export const useMultiSelect = (options) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
     
-  }, [inputRef]);
+  }, [inputRef, options]);
 
   // detect when user focus on the container to show the options
   const handleFocus = () => {
@@ -60,15 +61,15 @@ const handleInputChange = (event) => {
     );
     setSearchTerm(value);
   
-    if (value) {
-      setFilteredOptions(filtered);
-      // set showOptions to true only if filtered array is not empty
-      setShowOptions(filtered.length > 0); 
+    if (filtered.length === 0) {
+      setFilteredOptions([]);
+      setShowOptions(true);
     } else {
-      setFilteredOptions(options);
-      setShowOptions(false);
+      setFilteredOptions(filtered);
+      setShowOptions(true);
     }
   };
+  
   
   // allow user to press a key while the search input is focused 
   const handleInputKeyDown = () => {
