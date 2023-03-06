@@ -33,6 +33,7 @@ export default function MultiSelect({ options }) {
       ))}
       <input
         type="text"
+        ref={inputRef}
         value={searchTerm}
         onChange={handleInputChange}
         onKeyDown={handleInputKeyDown}

@@ -6,7 +6,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     min-width: 900px;
-    background-color: #fff;
     position: relative;
 }
   
@@ -22,7 +21,7 @@ li {
 }
   
 li.selected {
-    color: #ccc;
+    color: #DCDCDC;
     cursor: auto;
 }
 
@@ -112,7 +111,7 @@ input[type="text"]::placeholder {
     top: 100%;
     left: -1;
     width: 100%;
-    border: 1px solid #DCDCDC;
+    border: 1px solid #ccc;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow: scroll;
@@ -120,5 +119,12 @@ input[type="text"]::placeholder {
 }
 
 .no-options {
+    display: flex;
+    justify-content: center;
     color: #ccc;
+}
+
+.no-options:hover {
+    background-color: transparent;
+    cursor: auto;
 }

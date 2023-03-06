@@ -16,19 +16,31 @@ export const useMultiSelect = (options) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (inputRef.current && !inputRef.current.contains(event.target)) {
-        setFilteredOptions(options);
+        // if the searchTerm cannot be found
+        if (filteredOptions.length === 0) {
+          setFilteredOptions([]);
+        // if searchTerm is still there and searchTerm is in options
+        } else if (options.includes(searchTerm)) {
+          setFilteredOptions(selectedOptions);
+        // if searchTerm is not empty, filter the options by searchTerm
+        } else if (searchTerm !== '') {
+          const filtered = options.filter(option =>
+            option.toLowerCase().includes(searchTerm.toLowerCase())
+          );
+          setFilteredOptions(filtered);
+        }
         setShowOptions(false);
       }
-    };
-
+    };    
+      
     document.addEventListener('mousedown', handleClickOutside);
-
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-    
-  }, [inputRef, options]);
-
+  }, [inputRef, options, filteredOptions, selectedOptions, searchTerm]);
+  
+  
   // detect when user focus on the container to show the options
   const handleFocus = () => {
     setShowOptions(true);
@@ -63,10 +75,10 @@ const handleInputChange = (event) => {
   
     if (filtered.length === 0) {
       setFilteredOptions([]);
-      setShowOptions(true);
+      setShowOptions(!showOptions);
     } else {
       setFilteredOptions(filtered);
-      setShowOptions(true);
+      setShowOptions(!showOptions);
     }
   };
   
