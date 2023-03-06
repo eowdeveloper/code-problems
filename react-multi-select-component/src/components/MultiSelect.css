@@ -1,0 +1,120 @@
+.multi-select-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 900px;
+    background-color: #fff;
+    position: relative;
+}
+  
+.multi-select-container:focus-within {
+    border-color: #a1caf1;
+    box-shadow: 0 0 0 2px #a1caf1;
+}
+
+li {
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+  
+li.selected {
+    color: #ccc;
+    cursor: auto;
+}
+
+li:hover {
+    background-color: #a1caf1;
+}
+  
+.selected-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #DCDCDC;
+    margin: 2px;
+    padding: 0 0 0 8px;
+    height: 25px;
+    gap: 8px;
+    border-radius: 2px;
+    font-size: 14px;
+}
+  
+.delete-button {
+    background-color: transparent;
+    text-decoration: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+.delete-button:hover {
+    text-decoration: none;
+    border-radius: 2px;
+    height: 25px;
+    width: max-content;
+    background-color: #EC7050;
+}
+
+input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 4px;
+}
+  
+input[type="text"]::placeholder {
+    color: #ccc;
+}
+  
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    color: #a1caf1;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.dropdown-icon {
+    height: 12px;
+    width: 12px;
+}
+
+.delete-icon {
+    background-color: transparent;
+    height: 9px;
+    width: 9px;
+}
+
+.delete-all-button {
+    background-color: transparent;
+    text-decoration:none;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.delete-all-icon {
+    height: 10px;
+    width: 10px;
+}
+  
+.options-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: -1;
+    width: 100%;
+    border: 1px solid #DCDCDC;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    overflow: scroll;
+    max-height: 200px;
+}

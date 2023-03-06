@@ -1,0 +1,13 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h4 {
+    position: relative;
+    left: -433px;
+    margin-top: 150px;
+    margin-bottom: 10px;
+}
