@@ -28,7 +28,7 @@ export const useMultiSelect = (options) => {
             option.toLowerCase().includes(searchTerm.toLowerCase())
           );
           setFilteredOptions(filtered);
-        }
+        } // user clicks outside the component and then back inside, if they had previously typed a search term, the filtered options will still be displayed
         setShowOptions(false);
       }
     };    
