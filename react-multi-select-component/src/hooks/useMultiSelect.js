@@ -23,7 +23,7 @@ export const useMultiSelect = (options) => {
         } else if (options.includes(searchTerm)) {
           setFilteredOptions(selectedOptions);
         // if searchTerm is not empty, filter the options by searchTerm
-        } else if (searchTerm !== '') {
+        } else if (searchTerm.trim !== '') {
           const filtered = options.filter(option =>
             option.toLowerCase().includes(searchTerm.toLowerCase())
           );
