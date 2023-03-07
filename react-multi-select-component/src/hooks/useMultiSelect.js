@@ -32,10 +32,12 @@ export const useMultiSelect = (options) => {
         setShowOptions(false);
       }
     };    
-      
+    
+    // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
     
     return () => {
+      // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [inputRef, options, filteredOptions, selectedOptions, searchTerm]);
@@ -65,8 +67,8 @@ export const useMultiSelect = (options) => {
     setSearchTerm('');
   };
 
-// detect changes in input and filter accordingly
-const handleInputChange = (event) => {
+  // detect changes in input and filter accordingly
+  const handleInputChange = (event) => {
     const value = event.target.value;
     const filtered = options.filter(option =>
       option.toLowerCase().includes(value.toLowerCase())
