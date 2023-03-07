@@ -77,11 +77,10 @@ export const useMultiSelect = (options) => {
   
     if (filtered.length === 0) {
       setFilteredOptions([]);
-      setShowOptions(!showOptions);
     } else {
       setFilteredOptions(filtered);
-      setShowOptions(!showOptions);
     }
+    setShowOptions(!showOptions);
   };
   
   
