@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardsProgram renders table with reward points after transactions are fetched 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Total Points
+      </th>
+    </tr>
+  </thead>
+  <tbody />
+</table>
+`;
