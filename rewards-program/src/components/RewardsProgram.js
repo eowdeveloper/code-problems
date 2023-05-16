@@ -32,6 +32,26 @@ const calculateRewards = (transactions) => {
   return rewards;
 };
 
+// pure function for sorting month's array
+const sortingMonth = (transactions) => {
+  const objMonth = {};
+    transactions.forEach((transaction) => {
+      const epoch = new Date(transaction.date).getTime();
+      const month = new Date(transaction.date).toLocaleString("en", {month: "long"});
+
+      if (!(month in objMonth)) {
+        objMonth[month] = epoch;
+      }
+    });
+    
+    const sortedObjMonth = Object.entries(objMonth)
+      .sort((a, b) => a[1] - b[1])
+      .map((item) => item[0]);
+
+    return sortedObjMonth;
+};
+
+
 export default function RewardsProgram() {
   const [transactions, setTransactions] = useState([]);
   const [rewards, setRewards] = useState([]);
@@ -52,21 +72,7 @@ export default function RewardsProgram() {
   // setting the three-month period in an Array called MonthsArr 
   // setting EACH customer and their rewards points in an object form in an Array called rewards
   useEffect(() => {
-    const objMonth = {};
-    transactions.forEach((transaction) => {
-      const epoch = new Date(transaction.date).getTime();
-      const month = new Date(transaction.date).toLocaleString("en", {month: "long"});
-
-      if (!(month in objMonth)) {
-        objMonth[month] = epoch;
-      }
-    });
-    
-    const sortedObjMonth = Object.entries(objMonth)
-      .sort((a, b) => a[1] - b[1])
-      .map((item) => item[0]);
-
-    setMonthsArr(sortedObjMonth);
+    setMonthsArr(sortingMonth(transactions));
     setRewards(calculateRewards(transactions));
   }, [transactions]);
 
