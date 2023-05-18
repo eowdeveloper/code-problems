@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RewardsProgram calculateRewards returns correct rewards for transactions 1`] = `Array []`;
+
 exports[`RewardsProgram renders table with reward points after transactions are fetched 1`] = `
 <table>
   <thead>
@@ -14,4 +16,10 @@ exports[`RewardsProgram renders table with reward points after transactions are 
   </thead>
   <tbody />
 </table>
+`;
+
+exports[`RewardsProgram sortingMonth returns correct months array for transactions 1`] = `
+Array [
+  "January",
+]
 `;

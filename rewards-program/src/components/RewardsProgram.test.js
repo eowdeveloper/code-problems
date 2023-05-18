@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import RewardsProgram from "./RewardsProgram";
+import RewardsProgram, {calculateRewards, sortingMonth} from "./RewardsProgram";
 import * as api from "../api/customerApis";
 
 describe("RewardsProgram", () => {
@@ -28,4 +28,15 @@ describe("RewardsProgram", () => {
 
     expect(table).toMatchSnapshot();
   });
+
+  test("calculateRewards returns correct rewards for transactions", () => {
+    const rewards = calculateRewards(transactions);
+    expect(rewards).toMatchSnapshot();
+  });
+
+  test("sortingMonth returns correct months array for transactions", () => {
+    const monthArr = sortingMonth(transactions);
+    expect(monthArr).toMatchSnapshot();
+  });
 });
+

@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchTransactions } from "../api/customerApis";
 import "./RewardsProgram.css";
 
 // pure function for customer's rewards information
-const calculateRewards = (transactions) => {
+export function calculateRewards(transactions) {
   const rewards = [];
 
   transactions.forEach((transaction) => {
@@ -33,7 +33,7 @@ const calculateRewards = (transactions) => {
 };
 
 // pure function for sorting month's array
-const sortingMonth = (transactions) => {
+export function sortingMonth(transactions) {
   const objMonth = {};
     transactions.forEach((transaction) => {
       const epoch = new Date(transaction.date).getTime();
