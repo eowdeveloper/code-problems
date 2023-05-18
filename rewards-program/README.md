@@ -16,88 +16,55 @@ This is a rewards program that calculates reward points for customer transaction
     `GET /transactions` returns a list of all transactions during the three-month period.
 
 ```
-{
-  "transactions": [
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-01-05",
-      "amount": 120
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-01-10",
-      "amount": 60
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-01-12",
-      "amount": 100
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-01-13",
-      "amount": 200
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-01-15",
-      "amount": 80
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-02-01",
-      "amount": 110
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-02-03",
-      "amount": 150
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-02-05",
-      "amount": 120
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-02-09",
-      "amount": 50
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-02-10",
-      "amount": 75
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-02-15",
-      "amount": 40
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-03-01",
-      "amount": 90
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-03-10",
-      "amount": 60
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-03-15",
-      "amount": 100
-    },
-    {
-      "customer": "Elaina Jillian",
-      "date": "2022-03-17",
-      "amount": 120
-    },
-    {
-      "customer": "Nathan Neil",
-      "date": "2022-03-21",
-      "amount": 50
-    }
-  ]
-}
+const transactions = [
+  {
+    id: 1,
+    name: "Adam",
+    amount: 60,
+    date: 1676095200000
+  },
+
+  {
+    id: 2,
+    name: "John",
+    amount: 30,
+    date: 1677477600000
+  },
+  {
+    id: 3,
+    name: "Adam",
+    amount: 90,
+    date: 1674799200000
+  },
+  {
+    id: 4,
+    name: "Joe",
+    amount: 100,
+    date: 1673762400000
+  },
+  {
+    id: 5,
+    name: "John",
+    amount: 70,
+    date: 1671062400000
+  },
+  {
+    id: 6,
+    name: "John",
+    amount: 40,
+    date: 1670457600000
+  },
+  {
+    id: 7,
+    name: "Adam",
+    amount: 90,
+    date: 1672272000000
+  },
+  {
+    id: 8,
+    name: "Joe",
+    amount: 80,
+    date: 1645509600000
+  }
+];
 ```
